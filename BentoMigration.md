@@ -9,7 +9,7 @@
 ### Data Models
 
 <aside>
-💡 The following JSON represent every unique data model in Bento WLVT Legacy data (aka. wlvt.json JAN 2023
+💡 The following JSON represent every unique data model in Bento WLVT Legacy data (aka. wlvt.json JAN 2023).
 </aside>
 
 **Site**
@@ -26,6 +26,10 @@
 
 **Site Role**
 
+<aside>
+💡 Analyzing the main changes in the JSON structure, many changes are related to how the IDs are handled, the clearest example is in '"bento_cms.siterole"' in which we can see that in the previous structure the fields were strings and now they are IDs.
+<aside>
+<br />
 OLD
 
 ```json 
