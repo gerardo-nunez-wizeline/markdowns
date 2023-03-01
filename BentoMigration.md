@@ -1,10 +1,10 @@
-# LEHIGH-125: Analyze Bento data from WLVT migration
+# LEHIGH-45: Analyze Bento data from WLVT migration
 
 ### Description
 
 "WLVT uses PBS's Bento CMS to publish their news content. This ticket is to review the data provided by PBS so we can put together an LOE to migrate WLVT news stories to Grove."
 
-**Jira Ticket:** [https://perfectsense.atlassian.net/browse/LEHIGH-125](https://perfectsense.atlassian.net/browse/LEHIGH-125)
+**Jira Ticket:** [https://perfectsense.atlassian.net/browse/LEHIGH-12](https://perfectsense.atlassian.net/browse/LEHIGH-125)
 
 ### Data Models
 
@@ -26,6 +26,27 @@
 
 **Site Role**
 
+OLD
+
+```json 
+{
+    "pk": 37443,
+    "model": "bento_cms.siterole",
+    "fields": {
+        "site": [
+            "www.wlvt.org"
+        ],
+        "user": [
+            "chloen"
+        ],
+        "group": [
+            "editors"
+        ]
+    }
+}
+```
+
+NEW
 ```json
 {
     "model": "bento_cms.siterole",
@@ -38,9 +59,89 @@
 }
 ```
 
+
 - **Site Section**
-    
-    ```json
+
+OLD
+
+```json
+    {
+       "pk": 45,
+       "model": "bento_cms.sitesection",
+       "fields": {
+          "site": [
+             "www.wlvt.org"
+          ],
+          "content": {
+             "columns": {
+                "9c7a3652-bec6-40eb-a710-23b8e4eecbb3": {
+                   "components": [
+                      "ba060610-f24d-11e7-8939-c794e528d222",
+                      "16b13c80-0ca6-11ea-9cf5-11279dd89bbb",
+                      "2da56560-0ca6-11ea-9cf5-11279dd89bbb",
+                      "f22cd4a0-9fc8-11e8-aa3b-b35b3242189c"
+                   ],
+                   "id": "9c7a3652-bec6-40eb-a710-23b8e4eecbb3",
+                   "size": 12
+                }
+             },
+             "components": {
+                "f22cd4a0-9fc8-11e8-aa3b-b35b3242189c": {
+                   "id": "f22cd4a0-9fc8-11e8-aa3b-b35b3242189c",
+                   "data": {},
+                   "verboseName": "station header",
+                   "name": "station-header",
+                   "restriction": {
+                      "allowedColumns": [
+                         12
+                      ],
+                      "allowedSections": [
+                         "header"
+                      ],
+                      "allowedSiteTypes": [
+                         "station"
+                      ]
+                   },
+                   "settings": {
+                      "showSearch": true,
+                      "cls": "navbar-nav",
+                      "showLogo": true,
+                      "isSticky": true,
+                      "hasHighlight": true
+                   }
+                },
+                "ba060610-f24d-11e7-8939-c794e528d222": {},
+                "2da56560-0ca6-11ea-9cf5-11279dd89bbb": {},
+                "16b13c80-0ca6-11ea-9cf5-11279dd89bbb": {}
+             },
+             "layouts": {
+                "dc9a6435-f32d-41bf-91d1-2aa885d16088": {
+                   "showBackgroundImage": false,
+                   "columns": [
+                      "9c7a3652-bec6-40eb-a710-23b8e4eecbb3"
+                   ],
+                   "backgroundColor": "#ff0000",
+                   "name": "",
+                   "id": "dc9a6435-f32d-41bf-91d1-2aa885d16088",
+                   "showBackgroundColor": true
+                }
+             },
+             "section": {
+                "layouts": [
+                   "dc9a6435-f32d-41bf-91d1-2aa885d16088"
+                ]
+             },
+             "operation": {}
+          },
+          "section_type": "header",
+          "creation_date": "2017-01-08T03:52:51.391Z",
+          "modification_date": "2021-03-25T17:57:37.535Z"
+       }
+    }
+```
+
+NEW    
+```json
     {
     "model": "bento_cms.sitesection",
     "pk": 46,
@@ -93,24 +194,6 @@
                             },
                             "copyrightLinks": [
                                 {
-                                    "placeholder": "Copyright \\u00a9 {% now 'Y' %} Public Broadcasting Service (PBS), all rights reserved. PBS is a 501(c)(3) not-for-profit organization.",
-                                    "linkTo": {
-                                        "externalHref": "",
-                                        "filerUrl": "",
-                                        "target": null,
-                                        "pageId": null,
-                                        "enabled": false
-                                    },
-                                    "id": "77dbefd9-329f-4a5c-94d8-d8c28e067d99",
-                                    "replacements": [
-                                        {
-                                            "replace": "_currentYear_",
-                                            "find": "{% now 'Y' %}"
-                                        }
-                                    ],
-                                    "value": ""
-                                },
-                                {
                                     "placeholder": "Privacy Policy",
                                     "id": "53bf8251-b5c3-4beb-84b1-eca670e44f4f",
                                     "linkTo": {
@@ -121,30 +204,6 @@
                                         "enabled": true
                                     },
                                     "value": "Privacy Policy"
-                                },
-                                {
-                                    "placeholder": "Terms of Use",
-                                    "id": "2d001afb-a88c-44b6-a824-32e8930d8d39",
-                                    "linkTo": {
-                                        "externalHref": "https://www.pbs.org/about/terms-use/",
-                                        "filerUrl": "",
-                                        "target": null,
-                                        "pageId": null,
-                                        "enabled": true
-                                    },
-                                    "value": "Terms of Use"
-                                },
-                                {
-                                    "placeholder": "Marketing Preferences",
-                                    "id": "6c339ab5-d90f-44ed-9255-4fb75011e885",
-                                    "linkTo": {
-                                        "externalHref": "https://www.pbs.org/about/pbs-privacy-policy/#Use_Cookies_Web_Beacons",
-                                        "filerUrl": "",
-                                        "target": null,
-                                        "pageId": null,
-                                        "enabled": true
-                                    },
-                                    "value": "Marketing Preferences"
                                 }
                             ],
                             "expanded": {
@@ -172,71 +231,6 @@
                                                 "linkTo": {
                                                     "externalHref": "",
                                                     "pageId": 1101,
-                                                    "target": null,
-                                                    "fileId": "",
-                                                    "enabled": true
-                                                },
-                                                "hasLink": true
-                                            },
-                                            {
-                                                "value": "Join the PBS39 Leadership Society",
-                                                "placeholder": "Link Item",
-                                                "id": "83c0b386-aeee-4238-8351-9a0b9ba27f73",
-                                                "linkTo": {
-                                                    "externalHref": "",
-                                                    "pageId": 1346,
-                                                    "target": null,
-                                                    "fileId": "",
-                                                    "enabled": true
-                                                },
-                                                "hasLink": true
-                                            },
-                                            {
-                                                "value": "PBS39 Cub Club",
-                                                "placeholder": "Link Item",
-                                                "id": "20ee75d9-9823-4478-9f7d-42b4164ca98b",
-                                                "linkTo": {
-                                                    "externalHref": "",
-                                                    "pageId": 5040,
-                                                    "target": null,
-                                                    "fileId": "",
-                                                    "enabled": true
-                                                },
-                                                "hasLink": true
-                                            },
-                                            {
-                                                "value": "Local Programming Sponsorship",
-                                                "placeholder": "Link Item",
-                                                "id": "f222c33f-fa0a-4711-bc25-da9f1ebe1949",
-                                                "linkTo": {
-                                                    "externalHref": "",
-                                                    "pageId": 15942,
-                                                    "target": null,
-                                                    "fileId": "",
-                                                    "enabled": true
-                                                },
-                                                "hasLink": false
-                                            },
-                                            {
-                                                "value": "Shop PBS",
-                                                "placeholder": "Link Item",
-                                                "id": "d36a33a4-5a2d-4bbd-a59e-e643166c631e",
-                                                "linkTo": {
-                                                    "externalHref": "https://shop.pbs.org/",
-                                                    "pageId": null,
-                                                    "target": "_blank",
-                                                    "fileId": null,
-                                                    "enabled": true
-                                                },
-                                                "hasLink": true
-                                            },
-                                            {
-                                                "value": "Volunteer",
-                                                "placeholder": "Link Item",
-                                                "id": "dd07e004-acf5-439b-a6bf-e339b1622522",
-                                                "linkTo": {
-                                                    "externalHref": "",
-                                                    "pageId": 17294,
                                                     "target": null,
                                                     "fileId": "",
                                                     "enabled": true
@@ -290,16 +284,37 @@
                     ]
                 },
                 "operation": {}
-        }
+        },
         "section_type": "footer",
         "creation_date": "2017-01-08T03:52:51.395Z",
         "modification_date": "2023-01-04T14:46:15.456Z"
     }
 }
-    ```
+```
     
 
 **Category Page**
+
+
+OLD
+
+```json
+{
+    "model": "bento_cms.categorypage",
+    "fields": {
+        "page": [
+            "/blogs/carbon",
+            "www.wlvt.org"
+        ],
+        "category": [
+            "carbon",
+            "www.wlvt.org"
+        ]
+    }
+},
+```
+
+NEW
 
 ```json
 {
@@ -313,6 +328,24 @@
 ```
 
 **Blog Category**
+
+OLD
+```json
+{
+    "model": "bento_blog.category",
+    "fields": {
+        "disqus_shortname": "",
+        "delete_date": null,
+        "site": [
+            "www.wlvt.org"
+        ],
+        "branding_image": null,
+        "slug": "carbon",
+        "title": "Carbon"
+    }
+},
+```
+OLD
 
 ```json
 {
@@ -331,12 +364,56 @@
 
 **Blog Entry**
 
+OLD
+```json
+{
+    "model": "bento_blog.entry",
+    "fields": {
+        "content": "...",
+        "show_author": true,
+        "publication_date": "2020-12-18T02:03:13.701Z",
+        "slug": "boilo-tradition-lives-on-in-the-coal-region",
+        "show_social_icons": true,
+        "seo_title": "",
+        "credit": "",
+        "is_published": true,
+        "start_publication": "2020-12-18T03:51:30.212Z",
+        "authors": [
+            [
+                "Haley O'Brien",
+                "haleyo"
+            ]
+        ],
+        "disqus_enabled": true,
+        "update_date": "2020-12-18T03:51:30.225Z",
+        "category": [
+            "carbon",
+            "www.wlvt.org"
+        ],
+        "image_alt_text": "",
+        "custom_publication_date": null,
+        "show_post_date": true,
+        "enable_poster_image": true,
+        "title": "Boilo Tradition Lives on in the Coal Region",
+        "meta_keywords": "",
+        "modified_at": "2020-12-18T03:51:30.225Z",
+        "poster_image": "https://d1qbemlbhjecig.cloudfront.net/prod/filer_public/wlvt2-pbs/ebda298f18_boilo.jpg",
+        "short_description": "The high-octane beverage has been passed down through generations.",
+        "delete_date": null,
+        "caption": "",
+        "end_publication": null
+    }
+},
+```
+
+NEW
+
 ```json
 {
     "model": "bento_blog.entry",
     "pk": 286,
     "fields": {
-        "content": "Capt. Robert Sponeybarger is a former POW who served during the Vietnam War in 1972-73. He shared photos with PBS39, which can be viewed below.",
+        "content": "...",
         "title": "Col. Robert Sponeybarger: U.S. Air Force",
         "slug": "capt-robert-sponeybarger",
         "short_description": "Former POW served during the Vietnam War from 1972-73.",
@@ -369,6 +446,25 @@
 
 **Entry Authors**
 
+OLD
+```json
+{
+    "pk": 134746,
+    "model": "bento_blog.entry_authors",
+    "fields": {
+        "entry": [
+            "kids-for-the-community",
+            "carbon",
+            "www.wlvt.org"
+        ],
+        "author": [
+            "Haley O'Brien",
+            "haleyo"
+        ]
+    }
+},
+```
+NEW
 ```json
 {
     "model": "bento_blog.entry_authors",
@@ -380,7 +476,27 @@
 }
 ```
 
+
 **Entry Page**
+
+OLD 
+```json
+{
+    "model": "bento_cms.entrypage",
+    "fields": {
+        "entry": [
+            "kids-for-the-community",
+            "carbon",
+            "www.wlvt.org"
+        ],
+        "page": [
+            "/blogs/carbon/kids-for-the-community",
+            "www.wlvt.org"
+        ]
+    }
+},
+```
+NEW
 
 ```json
 {
@@ -394,6 +510,35 @@
 ```
 
 **Page**
+
+OLD
+
+```json
+{
+    "model": "bento_cms.page",
+    "fields": {
+        "meta_description": "",
+        "show_disqus": false,
+        "has_footer": true,
+        "has_indexing": true,
+        "modification_date": "2019-03-02T17:00:57.584Z",
+        "media_image": 68665,
+        "has_header": true,
+        "title": "Governor Wolf's Proposed Minimum Wage Increase Could Hurt Economy",
+        "path": "/blogs/carbon/governor-wolfs-proposed-minimum-wage-increase-could-hurt-economy",
+        "special_page_type": null,
+        "meta_title": "",
+        "page_type": "default",
+        "site": [
+            "www.wlvt.org"
+        ],
+        "delete_date": null,
+        "meta_tags": "minimum wage,governor tom wolf,governor,pennsylvania,pennsylvania minimum wage,increase,economy,blue mountain resort,small business,harrisburg,carbon county",
+        "rail_type": null
+    }
+},
+```
+NEW
 
 ```json
 {
@@ -422,6 +567,29 @@
 
 **Content Version**
 
+OLD
+```json
+{
+    "model": "bento_cms.contentversion",
+    "fields": {
+        "content": "...",
+        "last_editor": [
+            "dawaynec"
+        ],
+        "creation_date": "2017-09-18T13:52:52.941Z",
+        "page": [
+            "/thewar",
+            "www.wlvt.org"
+        ],
+        "modification_date": "2019-02-06T09:13:07.810Z",
+        "publication_end": "2017-10-03T19:04:15.715Z",
+        "display_name": "Draft",
+        "publication_start": "2017-09-18T13:53:05.460Z"
+    }
+},
+```
+NEW
+
 ```json
 {
     "model": "bento_cms.contentversion",
@@ -441,6 +609,24 @@
 
 **Redirect**
 
+OLD
+```json
+{
+    "model": "bento_cms.redirect",
+    "fields": {
+        "new_path": "/about/volunteer",
+        "modification_date": "2020-10-13T11:16:02.675Z",
+        "site": [
+            "www.wlvt.org"
+        ],
+        "old_path": "/Volunteer",
+        "creation_date": "2020-10-13T11:16:02.675Z",
+        "redirect_type": 301
+    }
+},
+```
+
+NEW
 ```json
 {
     "model": "bento_cms.redirect",
@@ -455,3 +641,4 @@
     }
 },
 ```
+
